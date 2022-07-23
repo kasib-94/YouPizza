@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using YouPizza.Data;
+using Microsoft.AspNetCore.Identity;
+using YouPizza.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
@@ -7,6 +9,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
                            "Connection string 'ApplicationDbContextConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 ;
 
 
@@ -29,11 +34,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapRazorPages();
 app.Run();
