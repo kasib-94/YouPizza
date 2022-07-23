@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouPizza", "YouPizza\YouPizza.csproj", "{B8504823-F9D1-4036-A09C-AE9793102451}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouPizza.Data", "YouPizza.Data\YouPizza.Data.csproj", "{C2154757-A0B2-4FB1-997B-25AF3F5C3B3D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YouPizza.Model", "YouPizza.Model\YouPizza.Model.csproj", "{E7D80225-27AB-4952-A11D-A2F45C4352B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8504823-F9D1-4036-A09C-AE9793102451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8504823-F9D1-4036-A09C-AE9793102451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8504823-F9D1-4036-A09C-AE9793102451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8504823-F9D1-4036-A09C-AE9793102451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2154757-A0B2-4FB1-997B-25AF3F5C3B3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2154757-A0B2-4FB1-997B-25AF3F5C3B3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2154757-A0B2-4FB1-997B-25AF3F5C3B3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2154757-A0B2-4FB1-997B-25AF3F5C3B3D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7D80225-27AB-4952-A11D-A2F45C4352B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7D80225-27AB-4952-A11D-A2F45C4352B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7D80225-27AB-4952-A11D-A2F45C4352B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7D80225-27AB-4952-A11D-A2F45C4352B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
