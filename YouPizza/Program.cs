@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using YouPizza.Data;
 using Microsoft.AspNetCore.Identity;
+using YouPizza.Data.Repository;
+using YouPizza.Data.Repository.IRepository;
 using YouPizza.Model;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,7 +11,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
                            "Connection string 'ApplicationDbContextConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
-
+builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
 builder.Services.AddDefaultIdentity<ApplicationUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 ;

@@ -9,7 +9,7 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(ApplicationDbContext db)
     {
         _db = db;
-      
+        Sauce = new SauceRepository(_db);
     }
 
 

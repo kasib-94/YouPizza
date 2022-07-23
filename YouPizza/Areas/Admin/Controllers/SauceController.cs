@@ -1,23 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YouPizza.Data;
+using YouPizza.Data.Repository.IRepository;
 using YouPizza.Model;
 
 namespace YouPizza.Areas.Admin.Controllers;
 
+
+[Area("Admin")]
+[Controller]
 public class SauceController : Controller
 {
     // GET
-    private readonly ApplicationDbContext dbContext;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public SauceController(ApplicationDbContext _dbContext)
+    public SauceController(IUnitOfWork unitOfWork)
     {
-        dbContext = _dbContext;
+        _unitOfWork = unitOfWork;
     }
 
     public IActionResult Index()
     {
-        IEnumerable<Sauce> objList = ;
-        return View(objCategorylist);
+        IEnumerable<Sauce> objList = _unitOfWork.Sauce.GetAll();
+        return View(objList);
     }
 
     public IActionResult Create()
@@ -27,14 +31,14 @@ public class SauceController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(CoverType obj)
+    public IActionResult Create(Sauce obj)
     {
 
 
         if (ModelState.IsValid)
         {
-            _unitOfWork.CoverType.Add(obj);
-            _unitOfWork.CoverType.Save();
+            _unitOfWork.Sauce.Add(obj);
+            _unitOfWork.Sauce.Save();
             TempData["success"] = "Category created successfully";
             return RedirectToAction("Index");
         }
@@ -50,7 +54,7 @@ public class SauceController : Controller
             return NotFound();
         }
 
-        var categoryFromDb = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+        var categoryFromDb = _unitOfWork.Sauce.GetFirstOrDefault(u => u.Id == id);
         if (categoryFromDb == null)
         {
             return NotFound();
@@ -62,13 +66,13 @@ public class SauceController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Edit(CoverType obj)
+    public IActionResult Edit(Sauce obj)
     {
 
 
         if (ModelState.IsValid)
         {
-            _unitOfWork.CoverType.Update(obj);
+            _unitOfWork.Sauce.Update(obj);
             _unitOfWork.Save();
             TempData["success"] = "Category updated successfully";
             return RedirectToAction("Index");
@@ -84,7 +88,7 @@ public class SauceController : Controller
             return NotFound();
         }
 
-        var categoryFromDb = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+        var categoryFromDb = _unitOfWork.Sauce.GetFirstOrDefault(u => u.Id == id);
 
         if (categoryFromDb == null)
         {
@@ -98,14 +102,15 @@ public class SauceController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult DeletePOST(int? id)
     {
-        var obj = _unitOfWork.CoverType.GetFirstOrDefault(u => u.Id == id);
+        var obj = _unitOfWork.Sauce.GetFirstOrDefault(u => u.Id == id);
         if (obj == null)
         {
             return NotFound();
         }
 
-        _unitOfWork.CoverType.Remove(obj);
-        _unitOfWork.CoverType.Save();
+        _unitOfWork.Sauce.Remove(obj);
+        _unitOfWork.Sauce.Save();
         TempData["success"] = "Category deleted successfully";
         return RedirectToAction("Index");
+    }
 }
