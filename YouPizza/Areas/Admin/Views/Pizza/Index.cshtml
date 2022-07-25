@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Pizza List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Upsert" asp-controller="Pizza" class="btn btn-primary">Create New Company <i class="bi bi-plus-circle"></i></a>
+        </div>
+    </div>
+
+
+    <br><br>
+
+    <table id="tbl" class="display" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>PizzaBase</th>
+                    <th>Office</th>
+                    <th>Extn.</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Extn.</th>
+                    <th>Start date</th>
+                    <th>Salary</th>
+                </tr>
+            </tfoot>
+        </table>
+
+@section Scripts
+{
+    <script src="~/js/Pizza.js"></script>
+}

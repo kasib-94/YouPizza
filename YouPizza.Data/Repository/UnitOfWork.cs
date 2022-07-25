@@ -1,4 +1,5 @@
 ﻿using YouPizza.Data.Repository.IRepository;
+using YouPizza.Model;
 
 namespace YouPizza.Data.Repository;
 
@@ -10,10 +11,14 @@ public class UnitOfWork : IUnitOfWork
     {
         _db = db;
         Sauce = new SauceRepository(_db);
+        Ingredients = new IngredientsRepository(_db);
+        Pizza = new PizzaRepository(_db);
     }
 
 
     public ISauceRepository Sauce { get; }
+    public IIngredientsRepository Ingredients { get; }
+    public IPizzaRepository Pizza { get; }
 
     public void Save()
     {

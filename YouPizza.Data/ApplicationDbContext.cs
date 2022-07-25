@@ -5,7 +5,7 @@ using YouPizza.Model;
 
 namespace YouPizza.Data;
 
-public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+public class ApplicationDbContext : IdentityDbContext
 {
     public DbSet<Sauce>? Sauces { get; set; }
     public DbSet<Ingredients> Ingriedients { get; set; }

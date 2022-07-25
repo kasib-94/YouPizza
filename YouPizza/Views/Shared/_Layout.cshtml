@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/YouPizza.styles.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/flatly.css">
+        <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>
 </head>
 <body>
 <header>
@@ -23,17 +24,17 @@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
-                  
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             CMS
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
                             <li>
-                                <a asp-area="Admin" asp-controller="Sauce" asp-action="Index" class="dropdown-item" >Sauces</a>
+                                <a asp-area="Admin" asp-controller="Sauce" asp-action="Index" class="dropdown-item">Sauces</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a asp-area="Admin" asp-controller="Ingredients" asp-action="Index" class="dropdown-item">Ingredients</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Something else here</a>
@@ -53,11 +54,12 @@
 </div>
 
 <footer class="border-top footer text-muted">
-   
+
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
