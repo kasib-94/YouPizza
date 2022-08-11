@@ -5,9 +5,8 @@ namespace YouPizza.Model;
 public class Ingredients
 {
     public int Id { get; set; }
-    [Required]
-    public string Name { get; set; }
+    [Required] public string Name { get; set; }
     
-    public  int? Count { get; set; }
+    public ICollection<IngredientsProduct>? IngredientsProduct { get; set; }
     
 }

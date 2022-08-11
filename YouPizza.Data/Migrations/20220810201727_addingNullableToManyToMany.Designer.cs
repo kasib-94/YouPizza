@@ -12,8 +12,8 @@ using YouPizza.Data;
 namespace YouPizza.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220730145915_Initial")]
-    partial class Initial
+    [Migration("20220810201727_addingNullableToManyToMany")]
+    partial class addingNullableToManyToMany
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,9 +257,6 @@ namespace YouPizza.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("Count")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -267,6 +264,53 @@ namespace YouPizza.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Ingriedients");
+                });
+
+            modelBuilder.Entity("YouPizza.Model.IngredientsProduct", b =>
+                {
+                    b.Property<int>("IngredientsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IngredientsId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("IngredientsProduct");
+                });
+
+            modelBuilder.Entity("YouPizza.Model.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("YouPizza.Model.Sauce", b =>
@@ -358,6 +402,46 @@ namespace YouPizza.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("YouPizza.Model.IngredientsProduct", b =>
+                {
+                    b.HasOne("YouPizza.Model.Ingredients", "Ingredients")
+                        .WithMany("IngredientsProduct")
+                        .HasForeignKey("IngredientsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YouPizza.Model.Product", "Product")
+                        .WithMany("IngredientsProduct")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ingredients");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("YouPizza.Model.Product", b =>
+                {
+                    b.HasOne("YouPizza.Model.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("YouPizza.Model.Ingredients", b =>
+                {
+                    b.Navigation("IngredientsProduct");
+                });
+
+            modelBuilder.Entity("YouPizza.Model.Product", b =>
+                {
+                    b.Navigation("IngredientsProduct");
                 });
 #pragma warning restore 612, 618
         }

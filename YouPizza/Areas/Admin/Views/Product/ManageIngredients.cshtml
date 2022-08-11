@@ -1,0 +1,60 @@
+﻿@model YouPizza.Model.ViewModel.IngredientsProductVM
+
+<div class="container p-3 border">
+    <div class="row">
+        <div class="col-6 form-group">
+            <form method="post" action="ManageIngredients" class="row">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Product.Id" />
+                <input type="hidden" asp-for="IngredientsProduct.ProductId" />
+
+                <div class="col-4">
+                    <label asp-for="Product.Name"></label>
+                </div>
+                <div class="col-8">
+                    <input type="text" asp-for="Product.Name" class="form-control" disabled />
+                </div>
+                <div class="col-4 pt-3">
+                    <label asp-for="IngredientsProduct.Ingredients.Name"></label>
+                </div>
+                <div class="col-8">
+                    @Html.DropDownListFor(u => u.IngredientsProduct.IngredientsId, Model.IngredientsList, "--Select Ingredient--",
+                        new { @class = "form-control" })
+                </div>
+                <div class="col-4 offset-4">
+                    <button type="submit" class="btn btn-primary form-control">Add Ingredient</button>
+                </div>
+                <div class="col-4">
+                    <a asp-action="Index" class="btn btn-success form-control">Back to List</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-6">
+
+            <form method="post" action="RemoveIngredients">
+                <input type="hidden" asp-for="@Model.Product.Id" />
+                <div class="row text-right">
+                    <div class="col-12 text-right h4 text-primary">
+                        Ingredients in this Prouct:
+                    </div>
+                </div>
+                @foreach (var ingr in Model.IngredientsProductsList)
+                {
+
+                    <div class="row pb-2">
+                        <div class="col-8 text-right" style="font-size:23px;">@ingr.Ingredients.Name</div>
+                        <div class="col-4">
+                            <button asp-action="RemoveIngredients" type="submit" class="btn btn-danger form-control" asp-route-Id="@ingr.IngredientsId">Remove</button>
+                        </div>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

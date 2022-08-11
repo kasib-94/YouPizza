@@ -14,13 +14,15 @@ public class UnitOfWork : IUnitOfWork
         Ingredients = new IngredientsRepository(_db);
         Category = new CategoryRepository(_db);
         Products = new ProductRepository(_db);
+        IngredientsProduct = new IngredientsProductRepository(_db);
     }
 
 
     public ISauceRepository Sauce { get; }
     public IIngredientsRepository Ingredients { get; }
-  public ICategoryRepository Category { get; }
-  public IProductRepository Products { get; }
+    public ICategoryRepository Category { get; }
+    public IProductRepository Products { get; }
+    public IIngredientsProductRepository IngredientsProduct { get; }
 
     public void Save()
     {

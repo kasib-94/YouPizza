@@ -1,7 +1,8 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using YouPizza.Data.Repository.IRepository;
 
-namespace YouPizza.Data.Repository.IRepository;
+namespace YouPizza.Data;
 
 public class Repository<T> : IRepository<T> where T : class
 {

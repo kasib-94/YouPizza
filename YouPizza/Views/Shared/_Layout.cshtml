@@ -22,7 +22,7 @@
             </button>
             <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                   
+
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,13 +38,16 @@
                             <li>
                                 <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="dropdown-item">Categories</a>
                             </li>
+                            <li>
+                                <a asp-area="Admin" asp-controller="Product" asp-action="Index" class="dropdown-item">Products</a>
+                            </li>
 
                         </ul>
                     </li>
                     <ul class="nav justify-content-lg-start">
-                         <li class="nav-item">
-                                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Menu</a>
                         </li>
