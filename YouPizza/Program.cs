@@ -21,6 +21,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+builder.Services.AddRazorPages()
+    .AddRazorRuntimeCompilation();
 var app = builder.Build();
 
 

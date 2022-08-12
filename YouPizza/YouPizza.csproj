@@ -46,4 +46,8 @@
       <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Edit.cshtml" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\img\Products" />
+    </ItemGroup>
+
 </Project>

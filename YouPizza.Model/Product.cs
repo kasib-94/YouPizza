@@ -13,6 +13,7 @@ public class Product
     public string Description { get; set; }
     [ForeignKey("Category")]
     public int CategoryId { get; set; }
+    [ValidateNever]
      public Category Category { get; set; }
     public string? ImageUrl { get; set; }
     [Required]

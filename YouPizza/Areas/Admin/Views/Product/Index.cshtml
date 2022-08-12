@@ -9,7 +9,7 @@
         </div>
 
         <div class=" col-2 text-right">
-            <a asp-action="Upsert" class="btn btn-info form-control"> Create Neww </a>
+            <a asp-action="Upsert" class="btn btn-info form-control"> Create New </a>
         </div>
     </div>
     <br/>
@@ -22,7 +22,7 @@
                         Name
                     </th>
                     <th>
-                        Description
+                        Photo
                     </th>
                     <th>
                         Category
@@ -43,7 +43,13 @@
                             @item.Name
                         </td>
                         <td>
-                            @item.Description
+                            <img src="@item.ImageUrl"
+                              
+                                 height="80px"
+                                 alt="@item.Description"
+                                 style="border-radius:5px; border:1px solid #bbb9b9
+                                 
+"/>
                         </td>
                         <td>
                             @item.Category.Name
@@ -64,9 +70,6 @@
                         <td>
                             <a class="btn btn-primary text-white" asp-action="Upsert" asp-route-Id="@item.Id">
                                 Edit
-                            </a>
-                            <a class="btn btn-info text-white" asp-action="Details" asp-route-Id="@item.Id">
-                                Details
                             </a>
                             <a class="btn btn-danger text-white" asp-action="Delete" asp-route-Id="@item.Id">
                                 Delete
