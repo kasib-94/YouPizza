@@ -70,7 +70,7 @@
                     </div>
                     <div class="mb-3 form-group row">
                         <div class="col-4 offset-4">
-                            @if (Model.Product == null)
+                            @if (Model.Product.Id == 0)
                             {
                                 <button type="submit" class="btn btn-primary form-control">Create</button>
                             }

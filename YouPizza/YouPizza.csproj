@@ -47,7 +47,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="wwwroot\gallery" />
       <Folder Include="wwwroot\img\Products" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Areas\Admin\Views\Pizza\Index.cshtml" />
+      <UpToDateCheckInput Remove="Areas\Admin\Views\Pizza\Upsert.cshtml" />
     </ItemGroup>
 
 </Project>
