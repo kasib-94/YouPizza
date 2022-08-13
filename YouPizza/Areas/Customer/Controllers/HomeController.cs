@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using YouPizza.Data.Repository.IRepository;
+using YouPizza.Model;
 
 namespace YouPizza.Areas.Customer.Controllers;
 [Area("Customer")]
@@ -6,6 +8,12 @@ namespace YouPizza.Areas.Customer.Controllers;
 
 public class HomeController : Controller
 {
+    private readonly IUnitOfWork _db;
+    public HomeController(IUnitOfWork db)
+    {
+        _db = db;
+
+    }
     // GET
     public IActionResult Index()
     {
@@ -17,8 +25,15 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Menu()
+    public IActionResult Menu(int? id)
     {
-        return View();
+        if (id==0 || id ==null)
+        {
+            id = 2;
+        }
+
+        IEnumerable<Product> prodList = _db.Products.GetAll().Where(u => u.CategoryId == id);
+        ViewBag.categories = _db.Category.GetAll().ToList();
+        return View(prodList);
     }
 }
