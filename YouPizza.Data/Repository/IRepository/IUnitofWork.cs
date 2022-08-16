@@ -8,6 +8,7 @@ public interface IUnitOfWork
     ICategoryRepository Category { get; }
     IProductRepository Products { get; }
     IIngredientsProductRepository IngredientsProduct { get; }
+    IApplicationUserRepository ApplicationUsers { get; }
   
 
     void Save();

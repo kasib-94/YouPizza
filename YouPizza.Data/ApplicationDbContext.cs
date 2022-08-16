@@ -7,10 +7,11 @@ namespace YouPizza.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<Sauce> Sauces { get; set; }
     public DbSet<Ingredients> Ingriedients { get; set; }
 
-    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+ 
 
     public DbSet<Category> Categories { get; set; }
 

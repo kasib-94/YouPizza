@@ -29,11 +29,13 @@ public class HomeController : Controller
     {
         if (id==0 || id ==null)
         {
-            id = 2;
+            id = 1;
         }
 
         IEnumerable<Product> prodList = _db.Products.GetAll().Where(u => u.CategoryId == id);
         ViewBag.categories = _db.Category.GetAll().ToList();
         return View(prodList);
     }
+
+  
 }

@@ -10,11 +10,13 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(ApplicationDbContext db)
     {
         _db = db;
+        ApplicationUsers = new ApplicationUserRepository(_db);
         Sauce = new SauceRepository(_db);
         Ingredients = new IngredientsRepository(_db);
         Category = new CategoryRepository(_db);
         Products = new ProductRepository(_db);
         IngredientsProduct = new IngredientsProductRepository(_db);
+       
     }
 
 
@@ -23,6 +25,7 @@ public class UnitOfWork : IUnitOfWork
     public ICategoryRepository Category { get; }
     public IProductRepository Products { get; }
     public IIngredientsProductRepository IngredientsProduct { get; }
+    public IApplicationUserRepository ApplicationUsers { get; }
 
     public void Save()
     {
