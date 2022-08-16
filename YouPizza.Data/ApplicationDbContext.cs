@@ -11,7 +11,7 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Sauce> Sauces { get; set; }
     public DbSet<Ingredients> Ingriedients { get; set; }
 
- 
+    public DbSet<OrderSummary> OrderSummaries { get; set; }
 
     public DbSet<Category> Categories { get; set; }
 

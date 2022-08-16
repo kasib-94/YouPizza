@@ -15,55 +15,61 @@
                     </div>
                 </div>
             </div>
+            @if (@Model.ListCart.Count() != 0)
+            {
+                <div class="card-body">
+                    @foreach (var item in Model.ListCart)
+                    {
+                        <div class=" rounded-3 mb-4">
+                            <div class="card-body border-0 p-4">
+                                <div class="row d-flex justify-content-between align-items-center">
+                                    <div class="col-md-2 col-lg-2 col-xl-2">
+                                        <img
+                                            src="@item.ImageUrl"
+                                            class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                    </div>
+                                    <div class="col-md-1 col-lg-1 col-xl-1">
+                                        <p class="lead fw-normal mb-2">@item.Name</p>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-xl-4 ">
+                                        <p class="text-black"> @item.Description</p>
+                                    </div>
+                                    <div class="col-md-2 col-lg-2 col-xl-2 ">
+                                        <h5 class="mb-0">@item.Price.ToString("C")</h5>
+                                    </div>
+                                    <div class="col-md-2 col-lg-2 col-xl-2 ">
+                                        <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-primary mx-2"> Remove from Basket </a>
 
-            <div class="card-body">
-                @foreach (var item in Model.ListCart)
-                {
-                    <div class=" rounded-3 mb-4">
-                        <div class="card-body border-0 p-4">
-                            <div class="row d-flex justify-content-between align-items-center">
-                                <div class="col-md-2 col-lg-2 col-xl-2">
-                                    <img
-                                        src="@item.ImageUrl"
-                                        class="img-fluid rounded-3" alt="Cotton T-shirt">
-                                </div>
-                                <div class="col-md-1 col-lg-1 col-xl-1">
-                                    <p class="lead fw-normal mb-2">@item.Name</p>
-                                </div>
-                                <div class="col-md-4 col-lg-4 col-xl-4 ">
-                                    <p class="text-black"> @item.Description</p>
-                                </div>
-                                <div class="col-md-2 col-lg-2 col-xl-2 ">
-                                    <h5 class="mb-0">@item.Price.ToString("C")</h5>
-                                </div>
-                                <div class="col-md-2 col-lg-2 col-xl-2 ">
-                                    <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.Id" class="btn btn-primary mx-2"> Remove from Basket </a>
-
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    }
+                    <div class="row">
+                        <div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between bg-light">
+                                    <span class="text-info"> Total (USD)</span>
+                                    <strong class="text-info">@Model.TotalPrice.ToString("C")</strong>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                }
-                <div class="row">
-                    <div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between bg-light">
-                                <span class="text-info"> Total (USD)</span>
-                                <strong class="text-info">@Model.TotalPrice.ToString("C")</strong>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
 
-            </div>
-
-            <div class="card-footer">
-                <div class="card-footer row">
-                    <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-                        <a class="btn btn-success form-control" asp-action="Summary" >Summary</a>
+                <div class="card-footer">
+                    <div class="card-footer row">
+                        <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
+                            <a class="btn btn-success form-control" asp-action="Summary">Summary</a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <p class="text-danger"> You need to Add some items First !</p>
+            }
         </div>
     </div>
 </form>

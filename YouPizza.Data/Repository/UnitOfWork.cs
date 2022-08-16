@@ -16,7 +16,7 @@ public class UnitOfWork : IUnitOfWork
         Category = new CategoryRepository(_db);
         Products = new ProductRepository(_db);
         IngredientsProduct = new IngredientsProductRepository(_db);
-       
+        OrderSummary = new OrderSummaryRepository(_db);
     }
 
 
@@ -26,6 +26,7 @@ public class UnitOfWork : IUnitOfWork
     public IProductRepository Products { get; }
     public IIngredientsProductRepository IngredientsProduct { get; }
     public IApplicationUserRepository ApplicationUsers { get; }
+    public IOrderSummaryRepository OrderSummary { get; }
 
     public void Save()
     {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using NuGet.Protocol;
 using YouPizza.Model.ViewModel;
+using YouPizza.Utility.SD;
 
 namespace YouPizza.Areas.Customer.Controllers;
 
@@ -30,10 +31,7 @@ public class CartController : Controller
         if (value != null)
         {
             obj.ListCart = JsonConvert.DeserializeObject<List<Product>>(value);
-            foreach (Product item in obj.ListCart)
-            {
-                obj.TotalPrice += item.Price;
-            }
+            obj.TotalPrice = obj.ListCart.Sum(item => item.Price);
         }
 
 
@@ -64,9 +62,6 @@ public class CartController : Controller
 
     public IActionResult Remove(int id)
     {
-      
-
-
         var value = HttpContext.Session.GetString("list");
         List<Product> ProductList = JsonConvert.DeserializeObject<List<Product>>(value);
         ProductList.Remove(ProductList.Find(x => x.Id == id));
@@ -78,6 +73,51 @@ public class CartController : Controller
 
     public IActionResult Summary()
     {
+        OrderSummary summaryVm = new OrderSummary();
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+        if (claim != null)
+        {
+            var user = _db.ApplicationUsers.GetFirstOrDefault(u => u.Id == claim.Value);
+            summaryVm.City = user.City;
+            summaryVm.Name = user.Name;
+            summaryVm.StreetAdress = user.StreetAdress;
+            summaryVm.State = user.State;
+            summaryVm.PostalCode = user.PostalCode;
+            summaryVm.PhoneNumber = user.PhoneNumber;
+        }
+
+        var value = HttpContext.Session.GetString("list");
+        summaryVm.ListCart = JsonConvert.DeserializeObject<List<Product>>(value);
+        foreach (Product item in summaryVm.ListCart)
+        {
+            summaryVm.TotalPrice += item.Price;
+        }
+
+        return View(summaryVm);
+    }
+
+    [HttpPost]
+    [ActionName("Summary")]
+    [ValidateAntiForgeryToken]
+    public IActionResult SummaryPOST(OrderSummary orderSummary)
+    {
+        var claimsIdentity = (ClaimsIdentity)User.Identity;
+        var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+        if (claim != null)
+        {
+            orderSummary.ApplicationUser = _db.ApplicationUsers.GetFirstOrDefault(u => u.Id == claim.Value);
+        }
+        //getting cart from session to order summary.listcart
+        orderSummary.ListCart = JsonConvert.DeserializeObject<List<Product>>(HttpContext.Session.GetString("list"));
+        orderSummary.OrderStatus = SD.Pending;
+        orderSummary.PaymentStatus = SD.Pending;
+        orderSummary.TotalPrice = orderSummary.ListCart.Sum(item => item.Price);
+        _db.OrderSummary.Add(orderSummary);
+        _db.Save();
+        
+        
         return View();
+        
     }
 }

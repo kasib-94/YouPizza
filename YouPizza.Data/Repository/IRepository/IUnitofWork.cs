@@ -10,6 +10,6 @@ public interface IUnitOfWork
     IIngredientsProductRepository IngredientsProduct { get; }
     IApplicationUserRepository ApplicationUsers { get; }
   
-
+IOrderSummaryRepository OrderSummary { get; }
     void Save();
 }
