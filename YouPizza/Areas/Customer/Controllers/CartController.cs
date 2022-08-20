@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using NuGet.Protocol;
 using YouPizza.Model.ViewModel;
 using YouPizza.Utility.SD;
+using Stripe.Checkout;
 
 namespace YouPizza.Areas.Customer.Controllers;
 
@@ -57,7 +58,7 @@ public class CartController : Controller
         }
 
 
-        return RedirectToAction("Menu", "Home");
+        return RedirectToAction("Menu", "Home",new {id=product.CategoryId});
     }
 
     public IActionResult Remove(int id)
@@ -73,20 +74,24 @@ public class CartController : Controller
 
     public IActionResult Summary()
     {
-        OrderSummary summaryVm = new OrderSummary();
+        ShoppingCartVM summaryVm = new ShoppingCartVM();
         var claimsIdentity = (ClaimsIdentity)User.Identity;
         var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
         if (claim != null)
         {
             var user = _db.ApplicationUsers.GetFirstOrDefault(u => u.Id == claim.Value);
-            summaryVm.City = user.City;
-            summaryVm.Name = user.Name;
-            summaryVm.StreetAdress = user.StreetAdress;
-            summaryVm.State = user.State;
-            summaryVm.PostalCode = user.PostalCode;
-            summaryVm.PhoneNumber = user.PhoneNumber;
+            summaryVm.user.City = user.City;
+            summaryVm.user.Name = user.Name;
+            summaryVm.user.StreetAdress = user.StreetAdress;
+            summaryVm.user.State = user.State;
+            summaryVm.user.PostalCode = user.PostalCode;
+            summaryVm.user.PhoneNumber = user.PhoneNumber;
         }
-
+        else
+        {
+            summaryVm.user = new ApplicationUser();
+        }
+      
         var value = HttpContext.Session.GetString("list");
         summaryVm.ListCart = JsonConvert.DeserializeObject<List<Product>>(value);
         foreach (Product item in summaryVm.ListCart)
@@ -100,24 +105,97 @@ public class CartController : Controller
     [HttpPost]
     [ActionName("Summary")]
     [ValidateAntiForgeryToken]
-    public IActionResult SummaryPOST(OrderSummary orderSummary)
+    public IActionResult SummaryPOST(ShoppingCartVM orderSummary)
     {
+        OrderSummary obj = new OrderSummary();
         var claimsIdentity = (ClaimsIdentity)User.Identity;
         var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-        if (claim != null)
-        {
-            orderSummary.ApplicationUser = _db.ApplicationUsers.GetFirstOrDefault(u => u.Id == claim.Value);
-        }
-        //getting cart from session to order summary.listcart
-        orderSummary.ListCart = JsonConvert.DeserializeObject<List<Product>>(HttpContext.Session.GetString("list"));
-        orderSummary.OrderStatus = SD.Pending;
-        orderSummary.PaymentStatus = SD.Pending;
-        orderSummary.TotalPrice = orderSummary.ListCart.Sum(item => item.Price);
-        _db.OrderSummary.Add(orderSummary);
+        
+            obj.Name = orderSummary.user.Name;
+            obj.PhoneNumber = orderSummary.user.PhoneNumber;
+            obj.StreetAdress = orderSummary.user.StreetAdress;
+            obj.City = orderSummary.user.City;
+            obj.State = orderSummary.user.State;
+            obj.PostalCode = orderSummary.user.PostalCode;
+            if (claim!=null)
+            {
+                var user = _db.ApplicationUsers.GetFirstOrDefault(u => u.Id == claim.Value);
+                      obj.ApplicationUserId = user.Id;
+            }
+            var value = HttpContext.Session.GetString("list");
+            IEnumerable<Product> productsList = JsonConvert.DeserializeObject<List<Product>>(value);
+            obj.TotalPrice = productsList.Sum(u => u.Price);
+        _db.OrderSummary.Add(obj);
+        _db.Save();
+   
+            foreach (var item in productsList )
+            {
+                ProductOrderSummary productOrder = new ProductOrderSummary();
+                productOrder.ProductId = item.Id;
+                productOrder.OrderSummaryId = obj.Id;
+                
+                _db.ProductOrder.Add(productOrder);
+            }
+            _db.Save();
+
+        
+    
+    
+        obj.OrderStatus = SD.Pending;
+        obj.PaymentStatus = SD.Pending;
+       // orderSummary.TotalPrice = orderSummary.ListCart.Sum(item => item.Price);
+
         _db.Save();
         
+        //STRIPE PAYMENT
         
+        
+            var domain = "https://localhost:7010/";
+            var options = new SessionCreateOptions
+            {
+                PaymentMethodTypes = new List<string>
+                {
+                    "card"
+                },
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+                SuccessUrl = domain + $"customer/cart/OderConfirmation?id={obj.Id}",
+                CancelUrl = domain + $"customer/cart/index",
+            };
+
+            // foreach (var item in ShoppingCartVm.ListCart)
+            // {
+            //     var sessionLineItem = new SessionLineItemOptions
+            //     {
+            //         PriceData = new SessionLineItemPriceDataOptions()
+            //         {
+            //             UnitAmount = (long)(item.Price * 100),
+            //             Currency = "usd",
+            //             ProductData = new SessionLineItemPriceDataProductDataOptions
+            //             {
+            //                 Name = item.Product.title,
+            //                 Description = item.Product.Description
+            //             }
+            //         },
+            //         Quantity = item.Count
+            //     };
+            //     options.LineItems.Add(sessionLineItem);
+            // }
+            //
+            // var service = new SessionService();
+            // Session session = service.Create(options);
+            // _unitOfWork.OrderHeader.UpdateStripePaymentId(ShoppingCartVm.OrderHeader.Id, session.Id,
+            //     session.PaymentIntentId);
+            // _unitOfWork.Save();
+            //
+            // Response.Headers.Add("Location", session.Url);
+            // return new StatusCodeResult(303);
+            return RedirectToAction(nameof(OderConfirmation),new { id = obj.Id});
+
+    }
+
+    public IActionResult OderConfirmation(int id)
+    {
         return View();
-        
     }
 }

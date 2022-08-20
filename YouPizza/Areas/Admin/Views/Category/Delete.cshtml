@@ -17,6 +17,11 @@
             <input asp-for="Name" disabled class="form-control"/>
 
         </div>
+         <div class="mb-3">
+                    <label asp-for="Sizes">Sizes</label>
+                    <input asp-for="Sizes" disabled class="form-control"/>
+        
+                </div>
 
         <button type="submit" class="btn btn-danger" style="width: 150px">Delete</button>
         <a asp-controller="Category" asp-action="Index" class="btn btn-secondary">Back To List</a>

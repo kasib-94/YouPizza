@@ -61,6 +61,7 @@ public class ProductController : Controller
     {
         if (ModelState.IsValid)
         {
+            obj.Product.Price = obj.Product.PriceSmall;
             string wwwRootPath = _webHost.WebRootPath;
             if (file != null)
             {

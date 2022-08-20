@@ -32,7 +32,7 @@
                     </th>
                
                     <th>
-                        Price
+                        Price Small
                     </th>
                     <th></th>
                 </tr>
@@ -65,7 +65,7 @@
                             @ingriredients.Trim().TrimEnd(',')
                         </td>
                         <td>
-                            @item.Price
+                            @item.PriceSmall
                         </td>
                         <td>
                             <a class="btn btn-primary text-white" asp-action="Upsert" asp-route-Id="@item.Id">

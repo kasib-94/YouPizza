@@ -20,10 +20,11 @@ public class OrderSummary
     public int? DeliveryEmployeeId { get; set; }
     public string? OrderStatus { get; set; }
     public string? PaymentStatus { get; set; }
-
-    [ForeignKey("ApplicationUserId")]
+    
+    public string? ApplicationUserId { get; set; }
+   
     [ValidateNever]
     public ApplicationUser ApplicationUser { get; set; }
 
-    public IEnumerable<Product> ListCart { get; set; }
+    public ICollection<ProductOrderSummary>? ProductOrderSummaries { get; set; }
 }

@@ -18,15 +18,16 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Product> Products { get; set; }
 
     public DbSet<IngredientsProduct> IngredientsProduct { get; set; }
+    public DbSet<ProductOrderSummary> ProductOrderSummaries { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<IngredientsProduct>().HasKey(ip => new { ip.IngredientsId, ip.ProductId });
-        
-    
+        modelBuilder.Entity<ProductOrderSummary>().HasKey(po => new { po.ProductId, po.OrderSummaryId });
     }
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }

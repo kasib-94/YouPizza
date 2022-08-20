@@ -51,11 +51,29 @@
 
                     <div class="mb-3 form-group row">
                         <div class="col-4">
-                            <label asp-for="Product.Price"></label>
+                            <label asp-for="Product.PriceSmall"></label>
                         </div>
                         <div class="col-8">
-                            <input asp-for="Product.Price" class="form-control"/>
-                            <span asp-validation-for="Product.Price" class="text-danger"></span>
+                            <input asp-for="Product.PriceSmall" class="form-control"/>
+                            <span asp-validation-for="Product.PriceSmall" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-group row">
+                        <div class="col-4">
+                            <label asp-for="Product.PriceMedium"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.PriceMedium" class="form-control"/>
+                            <span asp-validation-for="Product.PriceMedium" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-group row">
+                        <div class="col-4">
+                            <label asp-for="Product.PriceLarge"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.PriceLarge" class="form-control"/>
+                            <span asp-validation-for="Product.PriceLarge" class="text-danger"></span>
                         </div>
                     </div>
 
@@ -89,7 +107,7 @@
         <div class="col-2 mt-4">
             <img src="@Model.Product.ImageUrl"
                  width="100%"
-                 
+
                  style="border-radius:5px; border:1px solid #bbb9b9
 "/>
         </div>
