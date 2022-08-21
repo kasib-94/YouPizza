@@ -19,5 +19,6 @@ public class Product
     public int? PriceLarge { get; set; }
     public string? Size { get; set; }
     public ICollection<IngredientsProduct>? IngredientsProduct { get; set; }
-    public ICollection<ProductOrderSummary>? ProductOrderSummaries { get; set; }
-}
+   
+
+   }

@@ -21,10 +21,10 @@ public class OrderSummary
     public string? OrderStatus { get; set; }
     public string? PaymentStatus { get; set; }
     
+    public Dictionary<int,List<string>>? ProductSizes { get; set; }
     public string? ApplicationUserId { get; set; }
    
     [ValidateNever]
     public ApplicationUser ApplicationUser { get; set; }
 
-    public ICollection<ProductOrderSummary>? ProductOrderSummaries { get; set; }
 }

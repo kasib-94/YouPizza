@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
 using YouPizza.Data.Repository.IRepository;
 using YouPizza.Model;
 using YouPizza.Model.ViewModel;
@@ -71,12 +72,27 @@ public class HomeController : Controller
         obj.Categories = _db.Category.GetAll().ToList();
         return View(obj);
     }
-    [HttpPost]
-    public IActionResult ManageSize(MenuVM menuVm)
-    {
 
-       
-        return RedirectToAction(nameof(Menu),new {@menuVmm = menuVm});
+    public IActionResult Add(MenuVM obj)
+    {
+        if (HttpContext.Session.GetString("list") == null)
+        {
+            List<Product> ProductList = new List<Product>();
+            ProductList.Add(obj.Products[0]);
+            HttpContext.Session.SetString("list", JsonConvert.SerializeObject(ProductList));
+        }
+        else
+        {
+            var value = HttpContext.Session.GetString("list");
+            List<Product> ProductList = JsonConvert.DeserializeObject<List<Product>>(value);
+            ProductList.Add(obj.Products[0]);
+            HttpContext.Session.SetString("list", JsonConvert.SerializeObject(ProductList));
+        }
+
+
+        return RedirectToAction("Menu", "Home",new {id=obj.Products[0].CategoryId});
+        
+    
     }
   
 }

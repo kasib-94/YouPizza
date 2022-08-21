@@ -20,38 +20,55 @@
 {
     for (int i = 0; i < Model.Products.Count; i++)
     {
-        <div class=" rounded-3 mb-4 ">
+        <div class=" rounded-3 mb-4 text-center">
 
-            <div class="card-body border-0 p-4">
+            <div class="card-body border-0 p-2">
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
                             src="@Model.Products[i].ImageUrl"
                             class="img-fluid rounded-3">
                     </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1">
-                        <p class="lead fw-normal mb-2">@Model.Products[i].Name</p>
+                    <div class="flex-row col-md-4 col-lg-4 col-xl-4">
+                        <div class=" text-center">
+                            <p class="lead fw-normal mb-2">@Model.Products[i].Name</p>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-black"> @Model.Products[i].Description</p>
+                        </div>
                     </div>
-                    <div class="col-md-3 col-lg-3 col-xl-3 ">
-                        <p class="text-black"> @Model.Products[i].Description</p>
-                    </div>
-                    <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+                    <div class="col-md-2 col-lg-2 col-xl-2 flex-row flex form-group">
                         <form method="post" asp-action="Menu" class="row">
                             <input hidden asp-for="Products[i].Id"/>
                             @Html.DropDownListFor(u => @Model.Products[i].Size, Model.Sizes, "--Choose size--", new { @class = "form-control" })
+                            <br/>
                             <button type="submit" class="btn btn-primary form-control">Add Ingredient</button>
 
                         </form>
                     </div>
 
-                    <div class="col-md-2 col-lg-2 col-xl-2 ">
-                        <h5 class="mb-0">@Model.Products[i].Size</h5>
-                        <h5 class="mb-0">@Model.Products[i].Price.ToString("C")</h5>
-                    </div>
-                    <div class="col-md-2 col-lg-2 col-xl-2 ">
-                        <a asp-controller="Cart" asp-action="Add" asp-area="Customer" asp-route-id="@Model.Products[i].Id" class="btn btn-primary mx-2"> Add To Basket </a>
+                    <div class="col-md-2 col-lg-2 col-xl-2 flex-row">
+                        <form method="post" asp-action="Add" class="row">
+                            <input asp-for="Products[i].ImageUrl" hidden/>
+                            <input asp-for="Products[i].Name" hidden/>
+                            <input asp-for="Products[i].Description" hidden/>
+                            <input asp-for="Products[i].Id" hidden/>
+                            <input asp-for="Products[i].Size" hidden/>
+                            <input asp-for="Products[i].Price" hidden/>
+                            <input asp-for="Products[i].Id" hidden/>
+                            <input asp-for="Products[i].CategoryId" hidden/>
+                            <div class="text-center">
+                                <h5 class="mb-0">@Model.Products[i].Size</h5>
 
+                                <h5 class="mb-0">@Model.Products[i].Price.ToString("C")</h5>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary form-control">Add Ingredient</button>
+                            </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>
