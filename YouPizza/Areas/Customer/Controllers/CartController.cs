@@ -103,32 +103,55 @@ public class CartController : Controller
             var user = _db.ApplicationUsers.GetFirstOrDefault(u => u.Id == claim.Value);
             obj.ApplicationUserId = user.Id;
         }
-
         var value = HttpContext.Session.GetString("list");
         IEnumerable<Product> productsList = JsonConvert.DeserializeObject<List<Product>>(value);
         obj.TotalPrice = productsList.Sum(u => u.Price);
-        productsList.GroupBy(g => g.Id).ToList();
+      
         _db.OrderSummary.Add(obj);
         _db.Save();
-
+      
         foreach (var item in productsList)
         {
            
+            
+            OrderDetail detail = new OrderDetail()
+            {
+                OrderId = obj.Id,
+                Price = item.Price,
+                ProductId = item.Id,
+                Size = item.Size,
+            };
+            if (_db.OrderDetail.GetFirstOrDefault(u=>
+                    u.OrderId==obj.Id && 
+                    u.ProductId==item.Id &&
+                    u.Price==item.Price)!=null)
+            {
+                _db.OrderDetail.GetFirstOrDefault(u =>
+                    u.OrderId == obj.Id &&
+                    u.ProductId == item.Id &&
+                    u.Price == item.Price).Count++;
+            }
+            else
+            {
+                _db.OrderDetail.Add(detail);
+            }
+            _db.Save();
         }
 
-        
+        IEnumerable<OrderDetail> orderList = _db.OrderDetail.GetAll(u => u.OrderId == obj.Id,includeProperties:"Product");
+
 
 
         obj.OrderStatus = SD.Pending;
         obj.PaymentStatus = SD.Pending;
-        // orderSummary.TotalPrice = orderSummary.ListCart.Sum(item => item.Price);
+        
 
         _db.Save();
 
         //STRIPE PAYMENT
 
 
-        var domain = "https://localhost:7010/";
+        var domain = "https://localhost:7033/";
         var options = new SessionCreateOptions
         {
             PaymentMethodTypes = new List<string>
@@ -141,38 +164,49 @@ public class CartController : Controller
             CancelUrl = domain + $"customer/cart/index",
         };
 
-        // foreach (var item in ShoppingCartVm.ListCart)
-        // {
-        //     var sessionLineItem = new SessionLineItemOptions
-        //     {
-        //         PriceData = new SessionLineItemPriceDataOptions()
-        //         {
-        //             UnitAmount = (long)(item.Price * 100),
-        //             Currency = "usd",
-        //             ProductData = new SessionLineItemPriceDataProductDataOptions
-        //             {
-        //                 Name = item.Product.title,
-        //                 Description = item.Product.Description
-        //             }
-        //         },
-        //         Quantity = item.Count
-        //     };
-        //     options.LineItems.Add(sessionLineItem);
-        // }
-        //
-        // var service = new SessionService();
-        // Session session = service.Create(options);
-        // _unitOfWork.OrderHeader.UpdateStripePaymentId(ShoppingCartVm.OrderHeader.Id, session.Id,
-        //     session.PaymentIntentId);
-        // _unitOfWork.Save();
-        //
-        // Response.Headers.Add("Location", session.Url);
-        // return new StatusCodeResult(303);
-        return RedirectToAction(nameof(OderConfirmation), new { id = obj.Id });
+        foreach (var item in orderList)
+        {
+            var sessionLineItem = new SessionLineItemOptions
+            {
+                PriceData = new SessionLineItemPriceDataOptions()
+                {
+                    UnitAmount = (long)(item.Price * 100),
+                    Currency = "pln",
+                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                    {
+                        Name = item.Product.Name,
+                        Description = item.Product.Description
+                    }
+                },
+                Quantity = item.Count
+            };
+            options.LineItems.Add(sessionLineItem);
+        }
+        
+        var service = new SessionService();
+        Session session = service.Create(options);
+        _db.OrderSummary.GetFirstOrDefault(u=>u.Id==obj.Id).SessionId=session.Id;
+        _db.OrderSummary.GetFirstOrDefault(u => u.Id == obj.Id).PaymentIntentId = session.PaymentIntentId;
+        _db.Save();
+
+        Response.Headers.Add("Location", session.Url);
+        return new StatusCodeResult(303);
+      
     }
+    
 
     public IActionResult OderConfirmation(int id)
     {
-        return View();
+        OrderSummary orderSummary = _db.OrderSummary.GetFirstOrDefault(u => u.Id == id);
+        var service = new SessionService();
+        Session session = service.Get(orderSummary.SessionId);
+        if (session.PaymentStatus.ToLower() == "paid")
+        {
+            HttpContext.Session.Clear();
+            orderSummary.OrderStatus = "Paid";
+            orderSummary.PaymentStatus = "Paid";
+            _db.Save();
+        }
+        return View(id);
     }
 }

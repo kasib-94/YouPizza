@@ -19,13 +19,12 @@ public class ApplicationDbContext : IdentityDbContext
 
     public DbSet<IngredientsProduct> IngredientsProduct { get; set; }
 
-
+    public DbSet<OrderDetail> OrderDetails { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<IngredientsProduct>().HasKey(ip => new { ip.IngredientsId, ip.ProductId });
-     
     }
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)

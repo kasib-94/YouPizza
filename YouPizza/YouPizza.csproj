@@ -31,7 +31,7 @@
       </PackageReference>
       <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
-      <PackageReference Include="Stripe.net" Version="40.3.0-beta.1" />
+      <PackageReference Include="Stripe.net" Version="40.3.0" />
       <PackageReference Include="System.Web.Mvc.Extensions" Version="1.1.1.2" />
     </ItemGroup>
 

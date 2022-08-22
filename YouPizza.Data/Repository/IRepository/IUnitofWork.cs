@@ -11,7 +11,7 @@ public interface IUnitOfWork
 
     IOrderSummaryRepository OrderSummary { get; }
 
-
+    IOrderDetailRepository OrderDetail { get; }
 
     void Save();
 }
