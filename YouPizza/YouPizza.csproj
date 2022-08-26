@@ -7,96 +7,96 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\YouPizza.Data\YouPizza.Data.csproj" />
-      <ProjectReference Include="..\YouPizza.Model\YouPizza.Model.csproj" />
-      <ProjectReference Include="..\YouPizza.Utility\YouPizza.Utility.csproj" />
+        <ProjectReference Include="..\YouPizza.Data\YouPizza.Data.csproj" />
+        <ProjectReference Include="..\YouPizza.Model\YouPizza.Model.csproj" />
+        <ProjectReference Include="..\YouPizza.Utility\YouPizza.Utility.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="bootstrap.chosen" Version="1.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7" />
-      <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.7" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.7" />
-      <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.7" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
-      <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
-      <PackageReference Include="Stripe.net" Version="40.3.0" />
-      <PackageReference Include="System.Web.Mvc.Extensions" Version="1.1.1.2" />
+        <PackageReference Include="bootstrap.chosen" Version="1.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.7" />
+        <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.2-beta1" />
+        <PackageReference Include="Stripe.net" Version="40.3.0" />
+        <PackageReference Include="System.Web.Mvc.Extensions" Version="1.1.1.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Create.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Delete.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Edit.cshtml" />
-      <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Index.cshtml" />
+        <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Create.cshtml" />
+        <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Delete.cshtml" />
+        <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Edit.cshtml" />
+        <AdditionalFiles Include="Areas\Admin\Views\Ingredients\Index.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Index.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Upsert.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Create.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Delete.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Edit.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Login.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Register.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
-      <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Upsert.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Create.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Delete.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Admin\Views\Pizza\Edit.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResendEmailConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+        <_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\gallery" />
-      <Folder Include="wwwroot\img\Products" />
+        <Folder Include="wwwroot\gallery" />
+        <Folder Include="wwwroot\img\Products" />
     </ItemGroup>
 
     <ItemGroup>
-      <UpToDateCheckInput Remove="Areas\Admin\Views\Pizza\Index.cshtml" />
-      <UpToDateCheckInput Remove="Areas\Admin\Views\Pizza\Upsert.cshtml" />
+        <UpToDateCheckInput Remove="Areas\Admin\Views\Pizza\Index.cshtml" />
+        <UpToDateCheckInput Remove="Areas\Admin\Views\Pizza\Upsert.cshtml" />
     </ItemGroup>
 
 </Project>

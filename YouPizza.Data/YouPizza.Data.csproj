@@ -7,23 +7,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="bootstrap.chosen" Version="1.0.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7" />
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.7" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
+        <PackageReference Include="bootstrap.chosen" Version="1.0.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\YouPizza.Model\YouPizza.Model.csproj" />
+        <ProjectReference Include="..\YouPizza.Model\YouPizza.Model.csproj"/>
     </ItemGroup>
 
 </Project>

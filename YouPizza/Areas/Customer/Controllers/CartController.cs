@@ -203,10 +203,12 @@ public class CartController : Controller
         if (session.PaymentStatus.ToLower() == "paid")
         {
             HttpContext.Session.Clear();
+            orderSummary.PaymentAccepted = DateTime.Now.ToString("g");
             orderSummary.OrderStatus = "Paid";
             orderSummary.PaymentStatus = "Paid";
             _db.Save();
         }
-        return View(id);
+        return View(orderSummary);
     }
+ 
 }

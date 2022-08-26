@@ -20,7 +20,9 @@ public class OrderSummary
     public int? DeliveryEmployeeId { get; set; }
     public string? OrderStatus { get; set; }
     public string? PaymentStatus { get; set; }
-    
+    public string? TimeCreated { get; set; } = DateTime.Now.ToString("g");
+ 
+    public string? PaymentAccepted { get; set; }
     public string? ApplicationUserId { get; set; }
    
     [ValidateNever]

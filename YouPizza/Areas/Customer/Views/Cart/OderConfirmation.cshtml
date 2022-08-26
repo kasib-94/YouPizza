@@ -1,7 +1,11 @@
-﻿@model int 
+﻿@model YouPizza.Model.OrderSummary
 
 @{
     Layout = "_Layout";
 }
 
-order number : @Model is complete and will be dleivered
+
+
+
+<p>Dziękujemy za zamówienie w YouPizza ! </p>
+<p> Twoje zamówienie nr: @Model.Id Będzie niedługo dostarczone na adres: @Model.StreetAdress</p>

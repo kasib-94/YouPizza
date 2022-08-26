@@ -9,7 +9,7 @@
 
             @foreach (var item in Model.Categories)
             {
-                <li col-2 class="list-inline-item m-lg-5">
+                <li col-2 class="list-inline-item m-lg-3">
                     <a asp-action="Menu" asp-route-Id="@item.Id" class="text-decoration-none ">@item.Name </a>
                 </li>
             }
@@ -40,10 +40,8 @@
                     <div class="col-md-2 col-lg-2 col-xl-2 flex-row flex form-group">
                         <form method="post" asp-action="Menu" class="row">
                             <input hidden asp-for="Products[i].Id"/>
-                            @Html.DropDownListFor(u => @Model.Products[i].Size, Model.Sizes, "--Choose size--", new { @class = "form-control" })
+                            @Html.DropDownListFor(u => @Model.Products[i].Size, Model.Sizes,  new { @class = "form-control" ,onchange="this.form.submit()" })
                             <br/>
-                            <button type="submit" class="btn btn-primary form-control">Add Ingredient</button>
-
                         </form>
                     </div>
 
